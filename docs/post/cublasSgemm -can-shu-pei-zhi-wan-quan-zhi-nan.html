@@ -98,14 +98,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <em>The memory layout of a matrix in cublas indexing</em></p>
 <h2>2. 不同 layout 的矩阵在 cublas 中怎么配置</h2>
 <p>第一部分为背景知识，以下的所有讲解都以 cublas 的背景知识为基础。  cublasSgemm的函数原型为：</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">cublasStatus_t cublasSgemm(cublasHandle_t handle,
+<div class="highlight highlight-source-c++"><pre class="notranslate">cublasStatus_t <span class="pl-en">cublasSgemm</span>(cublasHandle_t handle,
                            cublasOperation_t transa, cublasOperation_t transb,
-                           int m, int n, int k,
-                           const float           *alpha,
-                           const float           *A, int lda,
-                           const float           *B, int ldb,
-                           const float           *beta,
-                           float           *C, int ldc)</pre></div>
+                           <span class="pl-k">int</span> m, <span class="pl-k">int</span> n, <span class="pl-k">int</span> k,
+                           <span class="pl-k">const</span> <span class="pl-k">float</span>           *alpha,
+                           <span class="pl-k">const</span> <span class="pl-k">float</span>           *A, <span class="pl-k">int</span> lda,
+                           <span class="pl-k">const</span> <span class="pl-k">float</span>           *B, <span class="pl-k">int</span> ldb,
+                           <span class="pl-k">const</span> <span class="pl-k">float</span>           *beta,
+                           <span class="pl-k">float</span>           *C, <span class="pl-k">int</span> ldc)</pre></div>
 <p><strong>transa, transb</strong>: 是否需要对输入的矩阵做转置操作，比如 A（3*5）， B（3 <em>5）,A和B无法直接相乘，必须先B做转置，A</em>B^T才是有意义的。<br>
 <strong>A，B</strong>： 指向两个矩阵的起始位置。<br>
 <strong>lda, ldb, ldc</strong>: cublas视角下，同一行相邻列在内存中的距离。和 Opencv中 CV::Mat 的 stride 代表的意义是一样的。<br>
